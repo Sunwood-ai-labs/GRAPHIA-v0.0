@@ -7,18 +7,31 @@ export function Register() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
+  const [loading, setLoading] = useState(false);
   const { signUp } = useAuth();
   const navigate = useNavigate();
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setError(''); // Clear previous errors
+    setError('');
+    setLoading(true);
 
     try {
       await signUp(email, password);
       navigate('/');
     } catch (err: any) {
-      setError(err.message);
+      console.error('Registration error:', err);
+      if (err.message.includes('already registered')) {
+        setError('このメールアドレスは既に登録されています。');
+      } else if (err.message.includes('password')) {
+        setError('パスワードは8文字以上である必要があります。');
+      } else if (err.message.includes('email')) {
+        setError('有効なメールアドレスを入力してください。');
+      } else {
+        setError('登録に失敗しました。もう一度お試しください。');
+      }
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -33,12 +46,12 @@ export function Register() {
           <div className="bg-red-50 text-red-500 p-4 rounded-md mb-6 text-sm font-zen">
             <p>{error}</p>
             {error.includes('既に登録されています') && (
-              <a 
-                href="/login" 
-                className="text-primary hover:text-secondary block mt-2 text-center"
+              <button 
+                onClick={() => navigate('/login')}
+                className="text-primary hover:text-secondary block w-full mt-2 text-center"
               >
                 ログインページへ
-              </a>
+              </button>
             )}
           </div>
         )}
@@ -54,6 +67,7 @@ export function Register() {
               onChange={(e) => setEmail(e.target.value)}
               className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary"
               required
+              disabled={loading}
             />
           </div>
           <div>
@@ -68,6 +82,7 @@ export function Register() {
               className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary"
               required
               minLength={8}
+              disabled={loading}
             />
             <p className="mt-1 text-xs text-gray-500 font-zen">
               8文字以上で入力してください
@@ -75,9 +90,12 @@ export function Register() {
           </div>
           <button
             type="submit"
-            className="w-full bg-primary hover:bg-secondary text-white font-zen py-2 px-4 rounded-md transition-colors"
+            disabled={loading}
+            className={`w-full bg-primary hover:bg-secondary text-white font-zen py-2 px-4 rounded-md transition-colors ${
+              loading ? 'opacity-50 cursor-not-allowed' : ''
+            }`}
           >
-            登録する
+            {loading ? '登録中...' : '登録する'}
           </button>
         </form>
       </div>

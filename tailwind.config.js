@@ -18,6 +18,9 @@ export default {
       maxWidth: {
         '12xl': '160rem',
       },
+      animation: {
+        'spin-slow': 'spin 3s linear infinite',
+      },
     },
   },
   plugins: [],
