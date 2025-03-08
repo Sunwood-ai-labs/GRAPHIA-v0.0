@@ -19,7 +19,7 @@ interface RankedFile {
   id: string;
   title: string;
   views: number;
-  username: string;
+  email: string;
   rank: number;
 }
 
@@ -57,7 +57,7 @@ export function Rankings() {
       const [filesData, tagsData, promptsData] = await Promise.all([
         supabase
           .from('ranked_files_by_views')
-          .select('id, title, views, username, rank')
+          .select('id, title, views, email, rank')
           .order('rank', { ascending: true })
           .limit(50),
         supabase.rpc('get_tag_rankings')
@@ -112,7 +112,7 @@ export function Rankings() {
   const filteredFiles = searchTerm
     ? topFiles.filter(file => 
         file.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
-        file.username.toLowerCase().includes(searchTerm.toLowerCase())
+        file.email.toLowerCase().includes(searchTerm.toLowerCase())
       )
     : topFiles;
 
@@ -179,7 +179,7 @@ export function Rankings() {
             type="text"
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
-            placeholder="タイトル、ユーザー名、タグ、プロンプトで検索..."
+            placeholder="タイトル、メールアドレス、タグ、プロンプトで検索..."
             className="w-full px-4 py-2 pl-10 bg-white/70 border border-gray-200 rounded-md focus:outline-none focus:ring-2 focus:ring-primary/50"
           />
           <FontAwesomeIcon 
@@ -207,7 +207,7 @@ export function Rankings() {
                   <span className="w-8 flex-shrink-0 text-center">{getMedalIcon(file.rank)}</span>
                   <div className="min-w-0">
                     <p className="font-zen truncate">{file.title}</p>
-                    <p className="text-xs text-gray-500 truncate">{file.username}</p>
+                    <p className="text-xs text-gray-500 truncate">{file.email.split('@')[0]}</p>
                   </div>
                 </div>
                 <div className="text-sm text-gray-500 flex-shrink-0">

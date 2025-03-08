@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link, useNavigate, Outlet } from 'react-router-dom';
 import { useAuth } from '../contexts/AuthContext';
-import { Home, Upload, GalleryVertical as Gallery, User, LogOut } from 'lucide-react';
+import { Sun, Upload, GalleryVertical as Gallery, User, LogOut } from 'lucide-react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTrophy } from '@fortawesome/free-solid-svg-icons';
 
@@ -25,7 +25,7 @@ export function Layout() {
           <div className="flex justify-between h-16">
             <div className="flex">
               <Link to="/" className="flex items-center">
-                <Home className="h-6 w-6 text-primary" />
+                <Sun className="h-6 w-6 text-primary animate-spin-slow" />
                 <span className="ml-2 font-kaisei text-lg text-dark">GRAPHIA</span>
               </Link>
               <div className="hidden sm:ml-6 sm:flex sm:space-x-8">

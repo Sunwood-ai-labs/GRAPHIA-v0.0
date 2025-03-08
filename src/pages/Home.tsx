@@ -126,8 +126,7 @@ export function Home() {
         </div>
 
         <footer className="text-center mt-16 text-sm font-yomogi text-gray-600">
-          <p>このグラフィックレコーディングは{new Date().toLocaleDateString('ja-JP')}に作成されました</p>
-          <p className="mt-2">
+          <p>
             <FontAwesomeIcon icon={faCopyright} className="mr-2" />
             2025 GRAPHIA
           </p>
