@@ -1,5 +1,7 @@
 <div align="center">
 
+![Image](https://github.com/user-attachments/assets/1fb884c1-8d42-45c9-baef-d52d1a97988b)
+
 # GRAPHIA
 ### Graphic Recording Application for Presenting HTML Illustrated Archives
 
@@ -53,32 +55,6 @@ GRAPHIAは、会議、イベント、論文、資料、ブログなど、あら�
 - プロンプトランキング
 - 検索機能付き
 
-<div align="center">
-
-## 🛠 技術スタック
-
-[![Tech Stack](https://skillicons.dev/icons?i=react,ts,tailwind,vite,supabase)](https://skillicons.dev)
-
-</div>
-
-- **フロントエンド**
-  - React
-  - TypeScript
-  - Tailwind CSS
-  - Vite
-
-- **バックエンド**
-  - Supabase
-    - データベース
-    - 認証
-    - ストレージ
-
-- **ライブラリ**
-  - React Router
-  - Lucide React
-  - Font Awesome
-  - Zustand
-
 ## 📦 インストール
 
 ```bash
@@ -101,26 +77,9 @@ npm run dev
    VITE_SUPABASE_ANON_KEY=your-supabase-anon-key
    ```
 
-## 📝 データベース構造
+## 📝 データベース
 
-### プロフィール (profiles)
-- id: uuid (PK)
-- email: text
-- username: text
-- created_at: timestamp
-
-### HTMLファイル (html_files)
-- id: uuid (PK)
-- user_id: uuid (FK -> profiles.id)
-- title: text
-- description: text
-- content: text
-- views: integer
-- created_at: timestamp
-- tags: text[]
-- prompt_name: text
-- reference_url: text
-- opacity: numeric
+データベースの詳細な構造とセキュリティ設定については、[DATABASE.md](./DATABASE.md)を参照してください。
 
 ## 👥 認証機能
 
