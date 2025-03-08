@@ -1,0 +1,72 @@
+@import url('https://fonts.googleapis.com/css2?family=Kaisei+Decol&family=Yomogi&family=Zen+Kurenaido&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --color-primary: #F2D22E;
+  --color-secondary: #F2A922;
+  --color-accent: #F27F1B;
+  --color-warning: #F26A1B;
+  --color-dark: #59200B;
+}
+
+body {
+  font-family: 'Zen Kurenaido', sans-serif;
+  background-color: #f9f7f1;
+  background-image: url("data:image/svg+xml,%3Csvg width='100' height='100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0 0h100v100H0z' fill='none'/%3E%3Cpath d='M0 10h100M10 0v100' stroke='%23e0e0e0' stroke-width='0.5' stroke-dasharray='2,3'/%3E%3C/svg%3E");
+  background-size: 30px 30px;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Kaisei Decol', serif;
+}
+
+.content-text {
+  font-family: 'Yomogi', cursive;
+}
+
+@keyframes float {
+  0% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+  100% { transform: translateY(0); }
+}
+
+@keyframes pulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.1); }
+  100% { transform: scale(1); }
+}
+
+.animate-float {
+  animation: float 3s ease-in-out infinite;
+}
+
+.animate-pulse-slow {
+  animation: pulse 2s ease-in-out infinite;
+}
+
+.speech-bubble {
+  position: relative;
+  background-color: rgba(242, 187, 87, 0.1);
+  border-radius: 15px;
+  padding: 15px;
+}
+
+.speech-bubble:before {
+  content: '';
+  position: absolute;
+  top: -15px;
+  left: 30px;
+  border-width: 0 15px 15px;
+  border-style: solid;
+  border-color: rgba(242, 187, 87, 0.1) transparent;
+}
+
+.gradient-text {
+  background: linear-gradient(45deg, #F2D22E, #F2A922, #F27F1B);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
